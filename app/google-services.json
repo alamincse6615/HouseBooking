@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "799885643758",
+    "project_id": "housebooking-df40b",
+    "storage_bucket": "housebooking-df40b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799885643758:android:db664a6d5d5ce5601a08ff",
+        "android_client_info": {
+          "package_name": "com.wu.housebooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799885643758-kh660ld97rk3d8jravgkkrd8qpa9aofk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo6HfEtlSKZKQ_pTjb2FGUlVA3YuTtVZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799885643758-kh660ld97rk3d8jravgkkrd8qpa9aofk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

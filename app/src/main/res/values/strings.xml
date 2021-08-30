@@ -1,0 +1,180 @@
+<resources>
+    <string name="app_name">T lodging</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="tag_line">Find property</string>
+
+
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="network_msg">No network connection</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_property">All Properties</string>
+    <string name="menu_latest">Latest</string>
+    <string name="menu_favourite">Favourite</string>
+    <string name="menu_setting">Settings</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_communicate">Communicate</string>
+    <string name="menu_about">About Us</string>
+    <string name="menu_rate_app">Rate App</string>
+    <string name="menu_share_app">Share App</string>
+    <string name="menu_more_app">More App</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_privacy">Privacy Policy</string>
+    <string name="menu_contact_us">Contact Us</string>
+    <string name="menu_add_properties">Add Properties</string>
+    <string name="menu_my_properties">My Properties</string>
+    <string name="notification_title">Enable Push Notification</string>
+
+
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_into_continue">Sign in to continue</string>
+    <!--Login/Sign Up-->
+    <string name="email">Email</string>
+    <string name="name_login">Name</string>
+    <string name="email_login">Email</string>
+    <string name="password_login">Password</string>
+    <string name="phone_login">Phone</string>
+    <string name="address_title">Address</string>
+    <string name="login">Login</string>
+    <string name="skip">Skip</string>
+    <string name="loading_title">Loading..</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="no_account">Don\'t Have an Account? </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
+    <string name="already_account">Already Have an Account? </string>
+    <string name="enter_city">Enter City</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="submit">Submit</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="send">Send</string>
+    <string name="please_enter_email">Please enter email</string>
+    <string name="forgot_description">Enter your email address below and  we\'ll send you email with password</string>
+    <string name="button_text_forgot_password">Forgot your password?</string>
+    <string name="profile_name_lbl">Name :- </string>
+    <string name="profile_email_lbl">Email :- </string>
+    <string name="profile_phone_lbl">Phone :- </string>
+    <string name="address_lbl">Address :- </string>
+    <string name="profile_password_lbl">Password :- </string>
+    <string name="detail_fur">Furnished</string>
+    <string name="detail_semi">Semi-Furnished</string>
+    <string name="detail_un_semi">Unfurnished</string>
+    <string name="detail_very">Verified</string>
+    <string name="detail_un_very">Non Verified</string>
+    <string name="advance_filter_title">Advance Property Filter</string>
+    <string name="filter_recommended">Recommended Filter</string>
+    <string name="filter_recommended_very">Verified Properties</string>
+    <string name="filter_recommended_non_very">Non Verified Properties</string>
+    <string name="filter_price">Price</string>
+    <string name="filter_price_min">Min:- </string>
+    <string name="filter_price_max">Max:- </string>
+    <string name="filter_furnishing">Furnishing</string>
+    <string name="filter_furnishing_fur">Furnished</string>
+    <string name="filter_furnishing_semi">Semi-Furnished</string>
+    <string name="filter_furnishing_un_fur">Unfurnished</string>
+    <string name="filter_type_properties">Property Type</string>
+    <string name="filter_bed">BedRoom</string>
+    <string name="filter_apply">Apply</string>
+    <string name="max_value">Max :-</string>
+    <string name="min_value">Min :-</string>
+    <string name="max_value_price">100</string>
+    <string name="min_value_price">500000000</string>
+    <string name="currency_symbol">৳</string>
+    <string name="choose_one_type">Choose type atleast one</string>
+    <string name="sort_by_title">Sort By</string>
+    <string name="sort_by_distance">Distance</string>
+    <string name="sort_by_law">Price :- High to Low</string>
+    <string name="sort_by_all">All Properties</string>
+    <string name="sort_by_high">Price :- Low to High</string>
+    <string name="sort_by_latest">Latest</string>
+    <string name="sort_by_popular">Popular</string>
+    <string name="location_permission">Location permission is required to find properties near you, without that you will not get optimal results</string>
+    <string name="opps">Opps.</string>
+
+    <string name="dialog_error">Error..</string>
+    <string name="dialog_warning">Warning..</string>
+    <string name="dialog_success">Success</string>
+    <string name="dialog_ok">OK</string>
+    <string name="logout_msg">Are you sure you want to logout?</string>
+    <string name="dialog_logout">Logout</string>
+    <string name="dialog_no">NO</string>
+
+
+    <!--Property-->
+    <string name="select_type">Select Purpose Type</string>
+    <string name="select_type_home">Select Purpose</string>
+    <string name="add_properties_type">Select Category</string>
+    <string name="add_properties_purpose">Purpose</string>
+    <string name="add_properties_PropertyName">Property Name</string>
+    <string name="add_properties_PropertyDescription">Property Description</string>
+    <string name="add_properties_Phone">Phone</string>
+    <string name="add_properties_Address">Address</string>
+    <string name="add_properties_Latitude">Latitude</string>
+    <string name="add_properties_Longitude">Longitude</string>
+    <string name="add_properties_Bedrooms">Bedrooms</string>
+    <string name="add_properties_Bathrooms">Bathrooms</string>
+    <string name="add_properties_Area">Area</string>
+    <string name="add_properties_Amenities">Amenities</string>
+    <string name="add_properties_Price">Price</string>
+    <string name="add_properties_FeaturedImage">Featured Image</string>
+    <string name="add_properties_FloorPlanImage">Floor Plan Image</string>
+    <string name="add_properties_GalleryImage">Gallery Image</string>
+    <string name="add_properties_submit">Submit</string>
+    <string name="select_image">Select Image</string>
+    <string name="facebook">Login with Facebook</string>
+    <string name="gmail">Login with Gmail</string>
+
+    <string name="restart_msg">Please restart your app something went to wrong</string>
+    <string name="license_msg">You are using invalid License or Package name is already in use, for more information contact us: info@viaviweb.com or viaviwebtech@gmail.com</string>
+    <string-array name="purpose_array">
+        <item>Sale</item>
+        <item>Rent</item>
+    </string-array>
+
+    <string-array name="house_array">
+        <item>Apartment</item>
+        <item>House</item>
+    </string-array>
+
+    <string-array name="fur_array">
+        <item>Furnished</item>
+        <item>Semi-Furnished</item>
+        <item>Unfurnished</item>
+    </string-array>
+
+
+    <string name="isRTL">false</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imagepicker_action_ok">Ok</string>
+    <string name="imagepicker_action_done">Done</string>
+    <string name="imagepicker_title_folder">Albums</string>
+    <string name="imagepicker_title_image">Galleries</string>
+
+
+    <string name="imagepicker_photo_count_multiple">%d images</string>
+    <string name="imagepicker_photo_count_single">%d image</string>
+
+    <string name="imagepicker_error_no_camera">No camera found</string>
+    <string name="imagepicker_error_create_image_file">Failed to create image file</string>
+    <string name="imagepicker_error_images_not_exist">Images not exist</string>
+    <string name="imagepicker_error_unknown">Unknown error</string>
+
+    <string name="imagepicker_msg_no_images">No images</string>
+    <string name="imagepicker_msg_no_write_external_storage_permission">To continue, please give access to your photos</string>
+    <string name="imagepicker_msg_no_camera_permission">To continue, please give access to take pictures</string>
+    <string name="imagepicker_msg_no_write_external_storage_camera_permission">To continue, please give access to take pictures</string>
+    <string name="imagepicker_msg_limit_images">Limit selection to %d images</string>
+    <string name="no_item_found">No Item Found</string>
+    <string name="property_desc">Property Description</string>
+    <string name="property_amenities">Amenities</string>
+    <string name="property_floor_plan">Floor Plan</string>
+
+
+</resources>

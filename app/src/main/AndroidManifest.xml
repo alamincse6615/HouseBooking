@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wu.housebooking">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".property.MyPropertyDetailsActivity"/>
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".property.MyPropertyActivity" />
+        <activity android:name=".property.PropertyDetailsActivity" />
+        <activity android:name=".property.AddPropertiesActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".Util.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".auth.SelectSignUpActivity" />
+        <activity
+            android:name=".DashboardActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_dashboard"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.SignUpActivity" />
+        <activity android:name=".MainActivity" /> <!-- for image picker -->
+        <activity
+            android:name=".imagePicker.ui.imagepicker.ImagePickerActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/imagepicker_ImagePickerTheme" />
+        <activity
+            android:name=".imagePicker.ui.camera.CameraActivty"
+            android:screenOrientation="portrait"
+            android:theme="@style/imagepicker_CameraTheme" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/imagepicker_file_paths" />
+        </provider>
+    </application>
+</manifest>
