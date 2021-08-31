@@ -175,6 +175,8 @@
     <string name="property_desc">Property Description</string>
     <string name="property_amenities">Amenities</string>
     <string name="property_floor_plan">Floor Plan</string>
+    <string name="subject">Subject</string>
+    <string name="description">Description</string>
 
 
 </resources>

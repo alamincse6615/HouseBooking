@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".property.MyPropertyDetailsActivity"/>
+        <activity android:name=".Util.ContuctUsActivity"></activity>
+        <activity android:name=".auth.ProfileEditActivity" />
+        <activity android:name=".property.MyPropertyDetailsActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".property.MyPropertyActivity" />
         <activity android:name=".property.PropertyDetailsActivity" />
@@ -54,4 +56,5 @@
                 android:resource="@xml/imagepicker_file_paths" />
         </provider>
     </application>
+
 </manifest>
