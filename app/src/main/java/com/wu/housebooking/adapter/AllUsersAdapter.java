@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,22 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wu.housebooking.R;
-import com.wu.housebooking.model.BookingModel;
-import com.wu.housebooking.model.ItemProperty;
 import com.wu.housebooking.model.SignUpModel;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingRequestToPOAdapter.ItemRowHolder>{
+public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.ItemRowHolder>{
     private Activity mContext;
 
-    private ArrayList<BookingModel> bookingModelArrayList = new ArrayList<>();
+    private ArrayList<SignUpModel> signUpModelArrayList = new ArrayList<>();
 
-    public BookingRequestToPOAdapter(Activity mContext, ArrayList<BookingModel> bookingModelArrayList) {
+    public AllUsersAdapter(Activity mContext, ArrayList<SignUpModel> signUpModelArrayList) {
         this.mContext = mContext;
-        this.bookingModelArrayList = bookingModelArrayList;
+        this.signUpModelArrayList = signUpModelArrayList;
     }
 
     @NonNull
@@ -41,24 +38,20 @@ public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingReque
     @Override
     public void onBindViewHolder(@NonNull @NotNull ItemRowHolder holder, int position) {
 
-        final BookingModel signUpModel = bookingModelArrayList.get(position);
-        holder.tv_name.setText(signUpModel.getUserName());
-        holder.tv_phone.setText(signUpModel.getUserPhone());
-        holder.tv_email.setText(signUpModel.getUserEmail());
-        if (signUpModel.getUserAddress().equals("address"))
-            holder.tv_address.setText("");
-        else
-            holder.tv_address.setText(signUpModel.getUserAddress());
-        holder.tv_role.setVisibility(View.INVISIBLE);
+        final SignUpModel signUpModel = signUpModelArrayList.get(position);
+        holder.tv_name.setText(signUpModel.getStrFullname());
+        holder.tv_phone.setText(signUpModel.getStrMobi());
+        holder.tv_email.setText(signUpModel.getStrEmail());
+        holder.tv_role.setText(signUpModel.getUserType());
     }
 
     @Override
     public int getItemCount() {
-        return (null != bookingModelArrayList ? bookingModelArrayList.size() : 0);
+        return (null != signUpModelArrayList ? signUpModelArrayList.size() : 0);
     }
 
     public class ItemRowHolder extends RecyclerView.ViewHolder {
-        private TextView tv_name, tv_phone, tv_email,tv_address,tv_role;
+        private TextView tv_name, tv_phone, tv_email,tv_role;
         private LinearLayout lyt_parent;
 
         private ItemRowHolder(View itemView) {
@@ -68,7 +61,6 @@ public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingReque
             tv_email = itemView.findViewById(R.id.tv_email);
             lyt_parent = itemView.findViewById(R.id.lyt_parent);
             tv_role = itemView.findViewById(R.id.tv_role);
-            tv_address = itemView.findViewById(R.id.tv_address);
         }
     }
 }

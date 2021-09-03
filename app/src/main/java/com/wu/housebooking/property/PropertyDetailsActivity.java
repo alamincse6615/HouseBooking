@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,11 +80,17 @@ public class PropertyDetailsActivity extends AppCompatActivity {
     TextView  tv_continue;
     ImageView image_floor;
     FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference,bookingRef;
+    DatabaseReference databaseReference,bookingRef,mDatabase;
     String propertyUid = "";
     String currentDateandTime = "";
     String thisBookingId = "";
     String continueButtonTxt = "Rent";
+    String propertyOwnerNumber = "";
+    String userName = "";
+    String userPhone = "";
+    String userEmail = "";
+    String userAddress = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +99,38 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.menu_property_details));
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         //Extract the data…
         if (bundle!=null)
             propertyUid = bundle.getString("propertyUid");
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Propertys");
         bookingRef = FirebaseDatabase.getInstance().getReference("Booking");
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        firebaseAuth  = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser()!=null)
+        mDatabase.child(String.valueOf(firebaseAuth.getCurrentUser().getUid())).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                userName = String.valueOf(snapshot.child("strFullname").getValue());
+                userPhone = String.valueOf(snapshot.child("strMobi").getValue());
+                userEmail = String.valueOf(snapshot.child("strEmail").getValue());
+                userAddress = String.valueOf(snapshot.child("address").getValue());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -115,11 +148,12 @@ public class PropertyDetailsActivity extends AppCompatActivity {
         ContainerAmenities = findViewById(R.id.ContainerAmenities);
         image_floor = findViewById(R.id.image_floor);
         tv_continue = findViewById(R.id.tv_continue);
-
+        imageCall = findViewById(R.id.imageCall);
         databaseReference.child(propertyUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                Picasso.get().load(String.valueOf(snapshot.child("gallery_image").getValue())).into(ivGallery);
+                if (String.valueOf(snapshot.child("gallery_image").getValue()).length()>5)
+                    Picasso.get().load(String.valueOf(snapshot.child("gallery_image").getValue())).into(ivGallery);
                 text.setText(String.valueOf(snapshot.child("propertyName").getValue()));
                 textPrice.setText(String.valueOf(snapshot.child("propertyPrice").getValue()));
                 textAddress.setText(String.valueOf(snapshot.child("propertyAddress").getValue()));
@@ -130,8 +164,11 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                 textFur.setText(String.valueOf(snapshot.child("propertyPropertyFur").getValue()));
                 property_description.setText(String.valueOf(snapshot.child("propertyDescription").getValue()));
                 ContainerAmenities.setText(String.valueOf(snapshot.child("propertyAmenities").getValue()));
+                if (String.valueOf(snapshot.child("floor_plan_image").getValue()).length()>5)
                 Picasso.get().load(String.valueOf(snapshot.child("floor_plan_image").getValue())).into(image_floor);
                 //tv_continue.setText(String.valueOf(snapshot.child("gallery_image").getValue()));
+
+                propertyOwnerNumber = String.valueOf(snapshot.child("propertyPhone").getValue());
             }
 
             @Override
@@ -169,7 +206,6 @@ public class PropertyDetailsActivity extends AppCompatActivity {
         currentDateandTime = sdf.format(new Date());
 
        // tv_continue.setText(continueButtonTxt);
-
         tv_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +216,10 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                         bookingMap.put("id",path);
                         bookingMap.put("uid",firebaseAuth.getCurrentUser().getUid());
                         bookingMap.put("PropertyId",propertyUid);
+                        bookingMap.put("userName",userName);
+                        bookingMap.put("userEmail",userEmail);
+                        bookingMap.put("userPhone",userPhone);
+                        bookingMap.put("userAddress",userAddress);
                         bookingMap.put("isAcceptByAdmin",false);
                         bookingMap.put("isAcceptByPropertyOwner",false);
                         bookingMap.put("isPayment",false);
@@ -224,6 +264,15 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                    return;
                 }
 
+            }
+        });
+
+        imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+propertyOwnerNumber));
+                startActivity(intent);
             }
         });
 

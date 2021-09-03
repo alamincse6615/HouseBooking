@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wu.housebooking">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".admin.AdminDashboardActivity"
-            android:label="@string/title_activity_admin_dashboard"></activity>
+            android:label="@string/title_activity_admin_dashboard"/>
         <activity android:name=".property.FavoriteActivity" />
         <activity android:name=".property.LatestPropertyActivity" />
         <activity android:name=".property.AllPropertyActivity" />

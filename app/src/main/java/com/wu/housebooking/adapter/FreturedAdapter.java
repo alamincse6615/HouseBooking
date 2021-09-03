@@ -46,7 +46,8 @@ public class FreturedAdapter extends RecyclerView.Adapter<FreturedAdapter.ItemRo
         holder.text.setText(singleItem.getPropertyName());
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol) + singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
-        Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
+        if (singleItem.getFeatured_image().length()>5)
+            Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
       /*  if (singleItem.isFav()) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);

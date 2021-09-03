@@ -106,7 +106,8 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
         databaseReference.child(propertyUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                Picasso.get().load(String.valueOf(snapshot.child("gallery_image").getValue())).into(ivGallery);
+                if (String.valueOf(snapshot.child("gallery_image").getValue()).length()>5)
+                    Picasso.get().load(String.valueOf(snapshot.child("gallery_image").getValue())).into(ivGallery);
                 text.setText(String.valueOf(snapshot.child("propertyName").getValue()));
                 textPrice.setText(String.valueOf(snapshot.child("propertyPrice").getValue()));
                 textAddress.setText(String.valueOf(snapshot.child("propertyAddress").getValue()));
@@ -124,25 +125,14 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot bookingSnapshot) {
                 for (DataSnapshot bSnapshot : bookingSnapshot.getChildren()){
-                    userRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot userSnapshot) {
-                            for (DataSnapshot uSnapshot : userSnapshot.getChildren()){
-                                SignUpModel signUpModel = uSnapshot.getValue(SignUpModel.class);
-                                if (bSnapshot.child("uid").getValue().equals(signUpModel.getUid())){
-                                    signUpModelArrayList.add(signUpModel);
-                                }
-                            }
-                        }
+                    BookingModel model = bSnapshot.getValue(BookingModel.class);
+                    if (model != null && propertyUid.equals(model.getPropertyId())) {
+                        bookingModelArrayList.add(model);
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                        }
-                    });
                 }
-                if (signUpModelArrayList.size()>0){
-                    bookingRequestToPOAdapter = new BookingRequestToPOAdapter(MyPropertyDetailsActivity.this, signUpModelArrayList);
+                if (bookingModelArrayList.size()>0){
+                    bookingRequestToPOAdapter = new BookingRequestToPOAdapter(MyPropertyDetailsActivity.this, bookingModelArrayList);
                     rv_request_list.setLayoutManager(new LinearLayoutManager(MyPropertyDetailsActivity.this, LinearLayoutManager.VERTICAL, false));
                     rv_request_list.setAdapter(bookingRequestToPOAdapter);
                 }

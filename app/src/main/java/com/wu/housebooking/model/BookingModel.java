@@ -1,40 +1,201 @@
 package com.wu.housebooking.model;
 
 public class BookingModel {
-    String uid;
+
     String PropertyId;
+    String adminCommissionAmount;
+    String adminCommissionPercent;
+    String id;
+    boolean isAcceptByAdmin;
+    boolean isAcceptByPropertyOwner;
+    boolean isPaidAdminCommissionAmount;
+    boolean isPaidProOwnerCommissionAmount;
+    boolean isPayment;
+    String paymentAmountByUser;
+    String paymentMethod;
+    String paymentTransactionId;
+    String proOwnerCommissionAmount;
+    String proOwnerCommissionPercent;
+    String uid;
+    String userAddress;
+    String userEmail;
+    String userName;
+    String userPhone;
 
+    public BookingModel() {
+    }
 
-  /*  PropertyId:
-            "2021:08:29_17:10:39M7K1q35TZbhCVTnuZWV4qIprmeC3"
-    adminCommissionAmount:
-            ""
-    adminCommissionPercent:
-            ""
-    id:
-            "2021:08:30_01:24:022021:08:29_17:10:39M7K1q35TZ..."
-    isAcceptByAdmin:
-            false
-    isAcceptByPropertyOwner:
-            true
-    isPaidAdminCommissionAmount:
-            false
-    isPaidProOwnerCommissionAmount:
-            false
-    isPayment:
-            true
-    paymentAmountByUser:
-            "10000"
-    paymentMethod:
-            "Nogod Personal +8801773451990"
-    paymentTransactionId:
-            "xgbbjhvbfbbgg"
-    proOwnerCommissionAmount:
-            ""
-    proOwnerCommissionPercent:
-            ""
-    uid:
-            "SQ0GTCj5u8XkL0OyBaC8fg7BHg83"
-*/
+    public BookingModel(String propertyId, String adminCommissionAmount, String adminCommissionPercent, String id, boolean isAcceptByAdmin, boolean isAcceptByPropertyOwner, boolean isPaidAdminCommissionAmount, boolean isPaidProOwnerCommissionAmount, boolean isPayment, String paymentAmountByUser, String paymentMethod, String paymentTransactionId, String proOwnerCommissionAmount, String proOwnerCommissionPercent, String uid, String userAddress, String userEmail, String userName, String userPhone) {
+        PropertyId = propertyId;
+        this.adminCommissionAmount = adminCommissionAmount;
+        this.adminCommissionPercent = adminCommissionPercent;
+        this.id = id;
+        this.isAcceptByAdmin = isAcceptByAdmin;
+        this.isAcceptByPropertyOwner = isAcceptByPropertyOwner;
+        this.isPaidAdminCommissionAmount = isPaidAdminCommissionAmount;
+        this.isPaidProOwnerCommissionAmount = isPaidProOwnerCommissionAmount;
+        this.isPayment = isPayment;
+        this.paymentAmountByUser = paymentAmountByUser;
+        this.paymentMethod = paymentMethod;
+        this.paymentTransactionId = paymentTransactionId;
+        this.proOwnerCommissionAmount = proOwnerCommissionAmount;
+        this.proOwnerCommissionPercent = proOwnerCommissionPercent;
+        this.uid = uid;
+        this.userAddress = userAddress;
+        this.userEmail = userEmail;
+        this.userName = userName;
+        this.userPhone = userPhone;
+    }
 
+    public String getPropertyId() {
+        return PropertyId;
+    }
+
+    public void setPropertyId(String propertyId) {
+        PropertyId = propertyId;
+    }
+
+    public String getAdminCommissionAmount() {
+        return adminCommissionAmount;
+    }
+
+    public void setAdminCommissionAmount(String adminCommissionAmount) {
+        this.adminCommissionAmount = adminCommissionAmount;
+    }
+
+    public String getAdminCommissionPercent() {
+        return adminCommissionPercent;
+    }
+
+    public void setAdminCommissionPercent(String adminCommissionPercent) {
+        this.adminCommissionPercent = adminCommissionPercent;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isAcceptByAdmin() {
+        return isAcceptByAdmin;
+    }
+
+    public void setAcceptByAdmin(boolean acceptByAdmin) {
+        isAcceptByAdmin = acceptByAdmin;
+    }
+
+    public boolean isAcceptByPropertyOwner() {
+        return isAcceptByPropertyOwner;
+    }
+
+    public void setAcceptByPropertyOwner(boolean acceptByPropertyOwner) {
+        isAcceptByPropertyOwner = acceptByPropertyOwner;
+    }
+
+    public boolean isPaidAdminCommissionAmount() {
+        return isPaidAdminCommissionAmount;
+    }
+
+    public void setPaidAdminCommissionAmount(boolean paidAdminCommissionAmount) {
+        isPaidAdminCommissionAmount = paidAdminCommissionAmount;
+    }
+
+    public boolean isPaidProOwnerCommissionAmount() {
+        return isPaidProOwnerCommissionAmount;
+    }
+
+    public void setPaidProOwnerCommissionAmount(boolean paidProOwnerCommissionAmount) {
+        isPaidProOwnerCommissionAmount = paidProOwnerCommissionAmount;
+    }
+
+    public boolean isPayment() {
+        return isPayment;
+    }
+
+    public void setPayment(boolean payment) {
+        isPayment = payment;
+    }
+
+    public String getPaymentAmountByUser() {
+        return paymentAmountByUser;
+    }
+
+    public void setPaymentAmountByUser(String paymentAmountByUser) {
+        this.paymentAmountByUser = paymentAmountByUser;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(String paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
+    }
+
+    public String getProOwnerCommissionAmount() {
+        return proOwnerCommissionAmount;
+    }
+
+    public void setProOwnerCommissionAmount(String proOwnerCommissionAmount) {
+        this.proOwnerCommissionAmount = proOwnerCommissionAmount;
+    }
+
+    public String getProOwnerCommissionPercent() {
+        return proOwnerCommissionPercent;
+    }
+
+    public void setProOwnerCommissionPercent(String proOwnerCommissionPercent) {
+        this.proOwnerCommissionPercent = proOwnerCommissionPercent;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 }

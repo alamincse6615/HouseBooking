@@ -68,10 +68,10 @@ public class DashboardActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_row);
+        toolbar.setTitle(getString(R.string.app_name));
         toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         navigationView = findViewById(R.id.navigation_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-
         HomeFragment homeFragment = new HomeFragment();
         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment).commit();
 
@@ -104,6 +104,7 @@ public class DashboardActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }*/
+
             }
 
             @Override
