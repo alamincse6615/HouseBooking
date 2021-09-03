@@ -28,6 +28,7 @@ public class MyPropertyAdapter extends RecyclerView.Adapter<MyPropertyAdapter.It
 
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
+    boolean isFavorite = false;
 
     public MyPropertyAdapter(Activity context, ArrayList<ItemProperty> dataList) {
         this.dataList = dataList;
@@ -50,16 +51,25 @@ public class MyPropertyAdapter extends RecyclerView.Adapter<MyPropertyAdapter.It
         holder.textAddress.setText(singleItem.getPropertyAddress());
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
-        if (singleItem.isFav()) {
+       /* if (singleItem.isFav()) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
         } else {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
-        }
+        }*/
 
         holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (isFavorite){
+                    isFavorite=false;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav));
+                    // holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
 
+                }else {
+                    isFavorite=true;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav_hover));
+                    // holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+                }
             }
         });
 

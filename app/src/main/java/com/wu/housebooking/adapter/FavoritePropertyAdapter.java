@@ -1,5 +1,6 @@
 package com.wu.housebooking.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,25 +23,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.ItemRowHolder> {
+public class FavoritePropertyAdapter extends RecyclerView.Adapter<FavoritePropertyAdapter.ItemRowHolder>{
 
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
     boolean isFavorite = false;
 
-
-    public HomePremiumAdapter(Activity context, ArrayList<ItemProperty> dataList) {
+    public FavoritePropertyAdapter(Activity context, ArrayList<ItemProperty> dataList) {
         this.dataList = dataList;
         this.mContext = context;
     }
+
     @NonNull
     @NotNull
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_home_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_property_item, parent, false);
+
         return new ItemRowHolder(v);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull @NotNull ItemRowHolder holder, int position) {
         final ItemProperty singleItem = dataList.get(position);
@@ -49,13 +52,17 @@ public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.
         holder.textAddress.setText(singleItem.getPropertyAddress());
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
-        /*if (singleItem.isFav()) {
+       /* if (singleItem.isFav()) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
         } else {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
-        }*/
+        }
+*/
 
-        holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
+        holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+        //holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav_hover));
+
+        /*holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isFavorite){
@@ -69,7 +76,7 @@ public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.
                     // holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
                 }
             }
-        });
+        });*/
 
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +86,7 @@ public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.
                 Intent intent = new Intent(mContext, PropertyDetailsActivity.class);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
+
                 //PopUpAds.ShowInterstitialAds(mContext, singleItem.getPId());
             }
         });
@@ -89,7 +97,9 @@ public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.
         } else {
             holder.txtPurpose.setBackgroundResource(singleItem.getPropertyPurpose().equals("Rent") ? R.drawable.rent_left_button : R.drawable.sale_left_button);
         }
+
     }
+
     @Override
     public int getItemCount() {
         return (null != dataList ? dataList.size() : 0);
@@ -98,7 +108,6 @@ public class HomePremiumAdapter extends RecyclerView.Adapter<HomePremiumAdapter.
         public ImageView image, ic_home_fav;
         private TextView text, textPrice, textAddress, txtPurpose;
         private LinearLayout lyt_parent;
-
         private ItemRowHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);

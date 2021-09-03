@@ -3,6 +3,7 @@ package com.wu.housebooking.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ public class HomeLatestAdapter extends RecyclerView.Adapter<HomeLatestAdapter.It
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
 
+    boolean isFavorite= false;
+
     public HomeLatestAdapter(Activity context, ArrayList<ItemProperty> dataList) {
         this.dataList = dataList;
         this.mContext = context;
@@ -46,17 +49,45 @@ public class HomeLatestAdapter extends RecyclerView.Adapter<HomeLatestAdapter.It
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol) + singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
+   /*
+        holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("click","clicked");
 
-        if (singleItem.isFav()) {
+                if (isFavorite){
+                    isFavorite=false;
+                    holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
+
+                }else {
+                    isFavorite=true;
+                    holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+                }
+            }
+        });
+    if (isFavorite) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+
         } else {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
-        }
+
+        }*/
 
         holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("click","clicked");
 
+                if (isFavorite){
+                    isFavorite=false;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav));
+                   // holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
+
+                }else {
+                    isFavorite=true;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav_hover));
+                   // holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+                }
             }
         });
 

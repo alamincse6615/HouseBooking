@@ -22,38 +22,48 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="autoCompleteTextViewStyle">@style/cursorColor</item>
     </style>
+
     <style name="cursorColor" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textCursorDrawable">@drawable/cursor</item>
     </style>
+
     <style name="editText_style" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
         <item name="colorControlActivated">@color/cursor_editText</item>
         <item name="android:textColorHighlight">@color/textView_select_text</item>
     </style>
+
     <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/custom</item>
     </style>
+
     <style name="Dashboard" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="android:fitsSystemWindows">true</item>
     </style>
+
     <style name="imagepicker_TextSmall" parent="TextAppearance.AppCompat.Small">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="imagepicker_ToolbarTitleText" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="imagepicker_ToolbarMenuText" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Menu">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="imagepicker_TextLarge" parent="TextAppearance.AppCompat.Large">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="imagepicker_BaseTheme" parent="Theme.AppCompat.NoActionBar"></style>
+
     <style name="imagepicker_ImagePickerTheme" parent="imagepicker_BaseTheme"></style>
 
     <style name="imagepicker_CameraTheme" parent="imagepicker_BaseTheme">
@@ -63,5 +73,16 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/Widget.AppTheme.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.HouseBooking.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 </resources>

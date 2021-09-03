@@ -6,6 +6,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="tag_line">Find property</string>
 
+    <string name="property_request">Property Request</string>
+    <string name="title_all_user">All Users</string>
+    <string name="transaction_request">Transaction Request</string>
+
 
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
@@ -177,6 +181,10 @@
     <string name="property_floor_plan">Floor Plan</string>
     <string name="subject">Subject</string>
     <string name="description">Description</string>
+    <string name="title_activity_latest_property">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_admin_dashboard">MainActivity</string>
 
 
 </resources>

@@ -13,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Util.ContuctUsActivity"></activity>
+        <activity
+            android:name=".admin.AdminDashboardActivity"
+            android:label="@string/title_activity_admin_dashboard"></activity>
+        <activity android:name=".property.FavoriteActivity" />
+        <activity android:name=".property.LatestPropertyActivity" />
+        <activity android:name=".property.AllPropertyActivity" />
+        <activity android:name=".Util.ContuctUsActivity" />
         <activity android:name=".auth.ProfileEditActivity" />
         <activity android:name=".property.MyPropertyDetailsActivity" />
         <activity android:name=".PaymentActivity" />

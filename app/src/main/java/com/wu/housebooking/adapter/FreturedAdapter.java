@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class FreturedAdapter extends RecyclerView.Adapter<FreturedAdapter.ItemRowHolder> {
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
+    boolean isFavorite = false;
 
     public FreturedAdapter(Activity context, ArrayList<ItemProperty> dataList) {
         this.dataList = dataList;
@@ -36,7 +37,6 @@ public class FreturedAdapter extends RecyclerView.Adapter<FreturedAdapter.ItemRo
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_home_item, parent, false);
-
         return new ItemRowHolder(v);
     }
 
@@ -48,16 +48,25 @@ public class FreturedAdapter extends RecyclerView.Adapter<FreturedAdapter.ItemRo
         holder.textAddress.setText(singleItem.getPropertyAddress());
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
-        if (singleItem.isFav()) {
+      /*  if (singleItem.isFav()) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
         } else {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
-        }
+        }*/
 
         holder.ic_home_fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (isFavorite){
+                    isFavorite=false;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav));
+                    // holder.ic_home_fav.setImageResource(R.drawable.ic_fav);
 
+                }else {
+                    isFavorite=true;
+                    holder.ic_home_fav.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_fav_hover));
+                    // holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
+                }
             }
         });
 

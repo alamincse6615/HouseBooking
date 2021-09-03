@@ -79,7 +79,9 @@ public class ContuctUsActivity extends AppCompatActivity {
                     contactMap.put("name",String.valueOf(edtFullName.getText().toString().trim()));
                     contactMap.put("email",String.valueOf(edtEmail.getText().toString().trim()));
                     contactMap.put("mobile",String.valueOf(edtMobile.getText().toString().trim()));
-                   // contactMap.put("mobile",null != String.valueOf(edtMobile.getText().toString().trim()) ? String.valueOf(edtMobile.getText().toString().trim()) : "");
+                    String.valueOf(edtMobile.getText().toString().trim());
+                    contactMap.put("mobile", String.valueOf(edtMobile.getText().toString().trim()));
+                    //contactMap.put("mobile",null != String.valueOf(edtMobile.getText().toString().trim()) ? String.valueOf(edtMobile.getText().toString().trim()) : "");
                     contactMap.put("subject",String.valueOf(edtSubject.getText().toString().trim()));
                     contactMap.put("description",String.valueOf(edtDescription.getText().toString().trim()));
                     mDatabase.child(path).setValue(contactMap);

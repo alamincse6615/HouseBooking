@@ -34,6 +34,9 @@ import com.wu.housebooking.carvelayout.SpaceOnClickListener;
 import com.wu.housebooking.databinding.ActivityDashboardBinding;
 import com.wu.housebooking.fragment.HomeFragment;
 import com.wu.housebooking.property.AddPropertiesActivity;
+import com.wu.housebooking.property.AllPropertyActivity;
+import com.wu.housebooking.property.FavoriteActivity;
+import com.wu.housebooking.property.LatestPropertyActivity;
 import com.wu.housebooking.property.MyPropertyActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -113,16 +116,36 @@ public class DashboardActivity extends AppCompatActivity {
                         highLightNavigation(0, getString(R.string.menu_home));
                         break;
                     case 1:
-                        toolbar.setTitle(getString(R.string.menu_latest));
+
+                        if (firebaseAuth.getCurrentUser() != null){
+                            Intent intent = new Intent(DashboardActivity.this, LatestPropertyActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+
+                     /*   toolbar.setTitle(getString(R.string.menu_latest));
                         HomeFragment latestFragment = new HomeFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, latestFragment).commit();
                         highLightNavigation(1, getString(R.string.menu_latest));
-                        break;
+                        break;*/
                     case 2:
-                        toolbar.setTitle(getString(R.string.menu_favourite));
+                        if (firebaseAuth.getCurrentUser() != null){
+                            Intent intent = new Intent(DashboardActivity.this, FavoriteActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+
+                      /*  toolbar.setTitle(getString(R.string.menu_favourite));
                         HomeFragment favouriteFragment = new HomeFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, favouriteFragment).commit();
-                        highLightNavigation(3, getString(R.string.menu_favourite));
+                        */
+                        //highLightNavigation(3, getString(R.string.menu_favourite));
+
+
                         break;
                     case 3:
                         if (firebaseAuth.getCurrentUser() != null){
@@ -158,22 +181,50 @@ public class DashboardActivity extends AppCompatActivity {
                         spaceNavigationView.changeCurrentItem(0);
                         return true;
                     case R.id.menu_go_latest:
-                        toolbar.setTitle(getString(R.string.menu_latest));
+
+
+                        if (firebaseAuth.getCurrentUser() != null){
+                            Intent intent = new Intent(DashboardActivity.this, LatestPropertyActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+
+
+                       /* toolbar.setTitle(getString(R.string.menu_latest));
                         HomeFragment homeFragment1 = new HomeFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment1).commit();
-                        spaceNavigationView.changeCurrentItem(1);
+                        spaceNavigationView.changeCurrentItem(1);*/
                         return true;
                     case R.id.menu_go_property:
-                        toolbar.setTitle(getString(R.string.menu_property));
+                        if (firebaseAuth.getCurrentUser() != null){
+                            Intent intent = new Intent(DashboardActivity.this, AllPropertyActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                     /*   toolbar.setTitle(getString(R.string.menu_property));
                         HomeFragment homeFragment2 = new HomeFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment2).commit();
-                        spaceNavigationView.changeCurrentItem(-1);
+                        spaceNavigationView.changeCurrentItem(-1);*/
+
                         return true;
                     case R.id.menu_go_favourite:
+
+                        if (firebaseAuth.getCurrentUser() != null){
+                            Intent intent = new Intent(DashboardActivity.this, FavoriteActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                        /*
                         toolbar.setTitle(getString(R.string.menu_favourite));
                         HomeFragment homeFragment3 = new HomeFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment3).commit();
-                        spaceNavigationView.changeCurrentItem(2);
+                        spaceNavigationView.changeCurrentItem(2);*/
                         return true;
                     case R.id.menu_go_my_properties:
                         if (firebaseAuth.getCurrentUser() != null){
