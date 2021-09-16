@@ -49,7 +49,7 @@ public class PropertyRequestFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 itemPropertyArrayList.clear();
                 for (DataSnapshot myPropertySnapshot: snapshot.getChildren()) {
-                    if (!Boolean.parseBoolean(String.valueOf(myPropertySnapshot.child("isFav").getValue()))){
+                    if (!Boolean.parseBoolean(String.valueOf(myPropertySnapshot.child("isApprovedByAdmin").getValue()))){
                         ItemProperty property = myPropertySnapshot.getValue(ItemProperty.class);
                         itemPropertyArrayList.add(property);
                     }

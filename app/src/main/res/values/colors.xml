@@ -21,6 +21,7 @@
     <color name="detail_circle_gray">#838383</color>
     <color name="detail_circle_gray_light">#33838383</color>
     <color name="detail_circle_green">#4BA000</color>
+    <color name="detail_circle_green_deep">#1A3007</color>
     <color name="detail_circle_green_light">#334BA000</color>
     <color name="detail_circle_orange">#F54E21</color>
     <color name="detail_circle_orange_light">#33f54f21</color>

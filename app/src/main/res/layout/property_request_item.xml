@@ -32,8 +32,11 @@
                     android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="2dp"
                     android:fontFamily="@font/custom"
                     android:text="NO Name"
+                    android:drawablePadding="5dip"
+                    android:drawableLeft="@drawable/ic_user_b"
                     android:textColor="#090909"
                     android:textSize="16dp" />
                 <View
@@ -46,7 +49,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/custom"
-                    android:text="NO Name"
+                    android:text="phone"
+                    android:padding="2dp"
+                    android:drawablePadding="5dip"
+                    android:drawableLeft="@drawable/ic_phone_with_wire"
                     android:textColor="#424141"
                     android:textSize="14dp" />
                 <View
@@ -59,7 +65,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/custom"
-                    android:text="NO Name"
+                    android:drawableLeft="@drawable/ic_email_b"
+                    android:text="email"
+                    android:drawablePadding="5dip"
+                    android:padding="2dp"
                     android:textColor="#424141"
                     android:textSize="14dp" />
 
@@ -68,6 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_email"
+                    android:drawableLeft="@drawable/ic_pin"
+                    android:drawablePadding="5dip"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/custom"
                     android:text="Not Found"
@@ -77,6 +88,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -90,8 +102,22 @@
                     android:layout_marginRight="10dp"
                     android:fontFamily="@font/custom"
                     android:text="Noting"
+                    android:padding="5dp"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/custom"
+                    android:text="Noting"
+                    android:padding="5dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </RelativeLayout>

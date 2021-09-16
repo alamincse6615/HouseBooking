@@ -192,6 +192,8 @@
                                 android:hint="Search Keyword"
                                 android:inputType="textPersonName"
                                 android:padding="15dp"
+                                android:editable="false"
+                                android:focusable="false"
                                 android:textColor="@color/gray_light"
                                 android:textColorHint="@color/gray_light"
                                 android:textCursorDrawable="@drawable/cursor_black"

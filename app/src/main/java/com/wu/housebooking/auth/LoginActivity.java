@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     String strEmail, strPassword;
     MaterialButton loginBtn,button_skip_login_activity;
     TextView textView_signup_login;
+    public static String LOGIN_USER="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         strPassword = edtPassword.getText().toString().trim();
 
         if (strEmail.equals("admin") && strPassword.equals("admin")){
+            LOGIN_USER = "ADMIN";
             Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
             startActivity(intent);
         }

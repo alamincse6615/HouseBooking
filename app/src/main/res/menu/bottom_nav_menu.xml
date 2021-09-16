@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    app:labelVisibilityMode="labeled">
 
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_property_request"
         android:title="@string/property_request" />
+
+    <item
+        android:id="@+id/navigation_all_property"
+        android:icon="@drawable/ic_property"
+        android:title="@string/all_property" />
 
     <item
         android:id="@+id/navigation_dashboard"

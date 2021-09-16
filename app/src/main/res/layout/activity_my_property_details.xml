@@ -39,11 +39,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@drawable/icon" />-->
-            <ImageView
-                android:id="@+id/ivGallery"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/icon" />
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:id="@+id/ivGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/icon" />
+
+                <TextView
+                    android:id="@+id/tv_edit"
+                    android:textColor="@color/white"
+                    android:background="@drawable/round_green_bg"
+                    android:text="Edit"
+                    android:drawablePadding="5dp"
+                    android:drawableLeft="@drawable/ic_edit"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
 
 
             <LinearLayout
@@ -174,11 +194,6 @@
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/list_line_detail_gradient" />
 
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rv_request_list"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"/>
-
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -221,6 +236,13 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/scrollView"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rv_request_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

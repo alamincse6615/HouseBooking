@@ -8,6 +8,8 @@ public class ItemProperty {
     private String floor_plan_image;
     private String gallery_image;
     private boolean isFav;
+    private boolean isApprovedByAdmin;
+    private boolean isDeleteByAdmin;
     private String pId;
     private String propertyAddress;
     private String propertyAmenities;
@@ -34,12 +36,14 @@ public class ItemProperty {
     public ItemProperty() {
     }
 
-    public ItemProperty(String UId, String featured_image, String floor_plan_image, String gallery_image, boolean isFav, String pId, String propertyAddress, String propertyAmenities, String propertyArea, String propertyBath, String propertyBed, String propertyCategory, String propertyDescription, String propertyFloorPlan, String propertyFur, String propertyMapLatitude, String propertyMapLongitude, String propertyName, String propertyPhone, String propertyPrice, String propertyPropertyFur, String propertyQualityType, String propertyPurpose, String propertyThumbnailB, String propertyTotalRate, String rateAvg) {
+    public ItemProperty(String UId, String featured_image, String floor_plan_image, String gallery_image, boolean isFav, boolean isApprovedByAdmin, boolean isDeleteByAdmin, String pId, String propertyAddress, String propertyAmenities, String propertyArea, String propertyBath, String propertyBed, String propertyCategory, String propertyDescription, String propertyFloorPlan, String propertyFur, String propertyMapLatitude, String propertyMapLongitude, String propertyName, String propertyPhone, String propertyPrice, String propertyPropertyFur, String propertyQualityType, String propertyPurpose, String propertyThumbnailB, String propertyTotalRate, String rateAvg) {
         this.UId = UId;
         this.featured_image = featured_image;
         this.floor_plan_image = floor_plan_image;
         this.gallery_image = gallery_image;
         this.isFav = isFav;
+        this.isApprovedByAdmin = isApprovedByAdmin;
+        this.isDeleteByAdmin = isDeleteByAdmin;
         this.pId = pId;
         this.propertyAddress = propertyAddress;
         this.propertyAmenities = propertyAmenities;
@@ -101,6 +105,22 @@ public class ItemProperty {
 
     public void setFav(boolean fav) {
         isFav = fav;
+    }
+
+    public boolean isApprovedByAdmin() {
+        return isApprovedByAdmin;
+    }
+
+    public void setApprovedByAdmin(boolean approvedByAdmin) {
+        isApprovedByAdmin = approvedByAdmin;
+    }
+
+    public boolean isDeleteByAdmin() {
+        return isDeleteByAdmin;
+    }
+
+    public void setDeleteByAdmin(boolean deleteByAdmin) {
+        isDeleteByAdmin = deleteByAdmin;
     }
 
     public String getpId() {

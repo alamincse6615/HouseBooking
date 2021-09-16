@@ -1,9 +1,15 @@
 package com.wu.housebooking.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.wu.housebooking.R;
+import com.wu.housebooking.adapter.AllPropertyAdapter;
 import com.wu.housebooking.adapter.FreturedAdapter;
 import com.wu.housebooking.adapter.HomeLatestAdapter;
 import com.wu.housebooking.adapter.HomePremiumAdapter;
 import com.wu.housebooking.model.ItemProperty;
+import com.wu.housebooking.property.AllPropertyActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,10 +43,13 @@ public class HomeFragment extends Fragment {
     ArrayList<ItemProperty> itemFreturedPropertyArrayList = new ArrayList<>();
     ArrayList<ItemProperty> itemHomePremiumPropertyArrayList = new ArrayList<>();
     ArrayList<ItemProperty> itemHomeLatestPropertyArrayList = new ArrayList<>();
+    ArrayList<ItemProperty> itemArrayList = new ArrayList<>();
     FreturedAdapter freturedAdapter;
     HomePremiumAdapter homePremiumAdapter;
     HomeLatestAdapter homeLatestAdapter;
     DatabaseReference databaseReference;
+    EditText search_property;
+    AllPropertyAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +58,32 @@ public class HomeFragment extends Fragment {
         rv_fretured = rootView.findViewById(R.id.rv_fretured);
         rv_homePremium = rootView.findViewById(R.id.rv_homePremium);
         rv_home_latest = rootView.findViewById(R.id.rv_home_latest);
+        search_property = rootView.findViewById(R.id.edt_name);
+        search_property.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AllPropertyActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        /*search_property.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+
+            }
+        });*/
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -56,11 +93,13 @@ public class HomeFragment extends Fragment {
                     for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                         ItemProperty property = postSnapshot.getValue(ItemProperty.class);
                         if (property!= null){
-                            if (property.getPropertyQualityType().equals("Fretured"))
+                            itemArrayList.add(property);
+
+                            if (property.getPropertyQualityType().equals("Fretured") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
                                 itemFreturedPropertyArrayList.add(property);
-                            if (property.getPropertyQualityType().equals("Home Premium"))
+                            if (property.getPropertyQualityType().equals("Home Premium") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
                                 itemHomePremiumPropertyArrayList.add(property);
-                            if (property.getPropertyQualityType().equals("Home Latest"))
+                            if (property.getPropertyQualityType().equals("Home Latest") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
                                 itemHomeLatestPropertyArrayList.add(property);
                         }
                     }
@@ -90,4 +129,13 @@ public class HomeFragment extends Fragment {
         });
         return rootView;
     }
+   /* private void filter(String text) {
+        ArrayList<ItemProperty> filteredList = new ArrayList<>();
+        for (ItemProperty item : itemArrayList) {
+            if (item.getPropertyName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        adapter.filterList(filteredList);
+    }*/
 }

@@ -50,6 +50,7 @@ public class FavoritePropertyAdapter extends RecyclerView.Adapter<FavoriteProper
         holder.text.setText(singleItem.getPropertyName());
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol) + singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
+        if (singleItem.getFeatured_image().length()>5)
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
        /* if (singleItem.isFav()) {

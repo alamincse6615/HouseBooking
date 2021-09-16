@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -62,6 +64,7 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
     TextView textPhone;
 
     TextView text;
+    TextView tv_edit;
     TextView textPrice;
     TextView textFur;
     TextView  textVery;
@@ -86,6 +89,14 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_property_details);
 
 
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(getString(R.string.menu_my_properties));
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         Bundle bundle = getIntent().getExtras();
         //Extract the data…
         if (bundle!=null)
@@ -102,6 +113,7 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
         textPhone = findViewById(R.id.textPhone);
         textPrice = findViewById(R.id.textPrice);
         text = findViewById(R.id.text);
+        tv_edit = findViewById(R.id.tv_edit);
         rv_request_list = findViewById(R.id.rv_request_list);
         databaseReference.child(propertyUid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -126,7 +138,7 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot bookingSnapshot) {
                 for (DataSnapshot bSnapshot : bookingSnapshot.getChildren()){
                     BookingModel model = bSnapshot.getValue(BookingModel.class);
-                    if (model != null && propertyUid.equals(model.getPropertyId())) {
+                    if (model != null && propertyUid.equals(model.getPropertyId()) && model.isAcceptByPropertyOwner() && model.isDeleteByPropertyOwner()) {
                         bookingModelArrayList.add(model);
                     }
 
@@ -158,5 +170,30 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("propertyUid", String.valueOf(propertyUid));
+
+        tv_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyPropertyDetailsActivity.this,AddPropertiesActivity.class);
+                intent.putExtras(bundle2);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+        return true;
     }
 }

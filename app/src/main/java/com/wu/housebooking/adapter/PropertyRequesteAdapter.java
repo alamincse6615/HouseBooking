@@ -12,10 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import com.wu.housebooking.R;
 import com.wu.housebooking.model.ItemProperty;
@@ -26,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class PropertyRequesteAdapter extends RecyclerView.Adapter<PropertyRequesteAdapter.ItemRowHolder> {
-
+    DatabaseReference databaseReference;
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
     boolean isFavorite = false;
@@ -48,10 +51,12 @@ public class PropertyRequesteAdapter extends RecyclerView.Adapter<PropertyReques
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ItemRowHolder holder, int position) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("Propertys");
         final ItemProperty singleItem = dataList.get(position);
         holder.text.setText(singleItem.getPropertyName());
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol) + singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
+        if (singleItem.getFeatured_image().length()>5)
         Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
         String[] propertyTypeItems = new String[] {"--select-->","Approved", "Delete"};
@@ -61,8 +66,17 @@ public class PropertyRequesteAdapter extends RecyclerView.Adapter<PropertyReques
         holder.sp_approved_or_delete.setAdapter(adapter);
         holder.sp_approved_or_delete.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                accept_result = propertyTypeItems[position];
+            public void onItemSelected(AdapterView<?> parent, View view, int posi, long id) {
+                accept_result = propertyTypeItems[posi];
+                if (posi==1){
+                    databaseReference.child(dataList.get(position).getpId()).child("isApprovedByAdmin").setValue(true);
+                    Toast.makeText(mContext, "Approved ", Toast.LENGTH_SHORT).show();
+                }
+                if (posi==1){
+                    databaseReference.child(dataList.get(position).getpId()).child("isDeleteByAdmin").setValue(true);
+                    Toast.makeText(mContext, "Approved ", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

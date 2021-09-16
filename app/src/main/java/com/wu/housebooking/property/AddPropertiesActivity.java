@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -105,6 +106,7 @@ public class AddPropertiesActivity extends AppCompatActivity {
     String propertyTotalRate = "";
     String propertyFur = "";
     boolean isFavourite = false;
+    String propertyUid = "";
 
 
     String featured_image = "";
@@ -123,6 +125,14 @@ public class AddPropertiesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_properties);
+
+
+        Bundle bundle = getIntent().getExtras();
+        //Extract the data…
+        if (bundle!=null)
+            propertyUid = bundle.getString("propertyUid");
+        Toast.makeText(this, "p: "+propertyUid, Toast.LENGTH_SHORT).show();
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Propertys");
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser()!=null)
@@ -634,5 +644,18 @@ public class AddPropertiesActivity extends AppCompatActivity {
                             }
                         });
             }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+        return true;
     }
 }

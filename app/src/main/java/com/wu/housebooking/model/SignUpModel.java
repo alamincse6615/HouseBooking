@@ -1,7 +1,13 @@
 package com.wu.housebooking.model;
 
 public class SignUpModel {
-    String strFullname, strEmail, strPassword, strMobi,userType,Uid;
+    String strFullname;
+    String strEmail;
+    String strPassword;
+    String strMobi;
+    String userType;
+    String Uid;
+    String address;
 
     public SignUpModel() {
     }

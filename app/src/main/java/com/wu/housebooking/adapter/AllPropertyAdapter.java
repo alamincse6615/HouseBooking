@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,14 +24,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class AllPropertyAdapter extends RecyclerView.Adapter<AllPropertyAdapter.ItemRowHolder>{
+public class AllPropertyAdapter extends RecyclerView.Adapter<AllPropertyAdapter.ItemRowHolder> implements Filterable {
 
     private ArrayList<ItemProperty> dataList;
     private Activity mContext;
     boolean isFavorite = false;
+    private ArrayList<ItemProperty> dataListFiltered;
 
     public AllPropertyAdapter(Activity context, ArrayList<ItemProperty> dataList) {
         this.dataList = dataList;
+        this.dataListFiltered = dataList;
         this.mContext = context;
     }
 
@@ -38,17 +42,17 @@ public class AllPropertyAdapter extends RecyclerView.Adapter<AllPropertyAdapter.
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_property_item, parent, false);
-
         return new ItemRowHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ItemRowHolder holder, int position) {
-        final ItemProperty singleItem = dataList.get(position);
+        final ItemProperty singleItem = dataListFiltered.get(position);
         holder.text.setText(singleItem.getPropertyName());
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol) + singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
-        Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
+        if (singleItem.getFeatured_image().length()>10)
+            Picasso.get().load(singleItem.getFeatured_image()).placeholder(R.drawable.icon).into(holder.image);
 
        /* if (singleItem.isFav()) {
             holder.ic_home_fav.setImageResource(R.drawable.ic_fav_hover);
@@ -96,8 +100,47 @@ public class AllPropertyAdapter extends RecyclerView.Adapter<AllPropertyAdapter.
 
     @Override
     public int getItemCount() {
-        return (null != dataList ? dataList.size() : 0);
+        return (null != dataListFiltered ? dataListFiltered.size() : 0);
     }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    dataListFiltered = dataList;
+                } else {
+                    ArrayList<ItemProperty> filteredList = new ArrayList<>();
+                    for (ItemProperty row : dataList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getPropertyName().toLowerCase().contains(charString.toLowerCase()) || row.getPropertyAddress().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    dataListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = dataListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                //dataListFiltered = (ArrayList<ItemProperty>) results.values;
+                dataListFiltered = (ArrayList<ItemProperty>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     public class ItemRowHolder extends RecyclerView.ViewHolder {
         public ImageView image, ic_home_fav;
         private TextView text, textPrice, textAddress, txtPurpose;

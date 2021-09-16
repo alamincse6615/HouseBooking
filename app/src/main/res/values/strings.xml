@@ -9,6 +9,7 @@
     <string name="property_request">Property Request</string>
     <string name="title_all_user">All Users</string>
     <string name="transaction_request">Transaction Request</string>
+    <string name="all_property">All Property</string>
 
 
     <string name="drawer_open">Drawer Open</string>
@@ -33,6 +34,7 @@
     <string name="menu_contact_us">Contact Us</string>
     <string name="menu_add_properties">Add Properties</string>
     <string name="menu_my_properties">My Properties</string>
+    <string name="menu_my_properties_list">My Properties List</string>
     <string name="notification_title">Enable Push Notification</string>
     <string name="menu_property_details">Property Details</string>
 
@@ -138,13 +140,12 @@
     <string name="restart_msg">Please restart your app something went to wrong</string>
     <string name="license_msg">You are using invalid License or Package name is already in use, for more information contact us: info@viaviweb.com or viaviwebtech@gmail.com</string>
     <string-array name="purpose_array">
-        <item>Sale</item>
         <item>Rent</item>
     </string-array>
 
     <string-array name="house_array">
-        <item>Apartment</item>
         <item>House</item>
+
     </string-array>
 
     <string-array name="fur_array">
@@ -186,6 +187,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_admin_dashboard">MainActivity</string>
-
+    <string name="action_search">Search</string>
 
 </resources>
