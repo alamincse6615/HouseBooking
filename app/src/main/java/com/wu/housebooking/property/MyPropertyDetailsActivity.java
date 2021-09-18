@@ -136,9 +136,10 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
         bookingRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot bookingSnapshot) {
+                bookingModelArrayList.clear();
                 for (DataSnapshot bSnapshot : bookingSnapshot.getChildren()){
                     BookingModel model = bSnapshot.getValue(BookingModel.class);
-                    if (model != null && propertyUid.equals(model.getPropertyId()) && model.isAcceptByPropertyOwner() && model.isDeleteByPropertyOwner()) {
+                    if (model != null && propertyUid.equals(model.getPropertyId()) && !Boolean.parseBoolean(String.valueOf(bSnapshot.child("isAcceptByPropertyOwner").getValue())) && !Boolean.parseBoolean(String.valueOf(bSnapshot.child("isDeleteByPropertyOwner").getValue()))) {
                         bookingModelArrayList.add(model);
                     }
 
@@ -148,6 +149,7 @@ public class MyPropertyDetailsActivity extends AppCompatActivity {
                     rv_request_list.setLayoutManager(new LinearLayoutManager(MyPropertyDetailsActivity.this, LinearLayoutManager.VERTICAL, false));
                     rv_request_list.setAdapter(bookingRequestToPOAdapter);
                 }
+
                 /*if (snapshot.child("propertyUid").getValue().equals(propertyUid)){
 
 

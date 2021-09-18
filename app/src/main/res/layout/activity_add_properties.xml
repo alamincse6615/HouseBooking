@@ -251,10 +251,71 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/lay_purpose_latitude"
+                        android:id="@+id/lay_purpose_discount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/lay_purpose_address"
+                        android:layout_margin="2dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edt_discountable_purpose"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/edittext_border"
+                                android:elevation="10dp"
+                                android:hint="Discountable Purpose"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="8dp"
+                                android:paddingBottom="4dp"
+                                android:paddingEnd="4dp"
+                                android:paddingTop="4dp"
+                                android:textColor="@color/add_properties_text"
+                                android:textColorHint="@color/add_properties_text"
+                                android:textSize="14sp"
+                                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                                android:layout_marginRight="5dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp" />
+
+                            <EditText
+                                android:id="@+id/edt_discountable_amount"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/edittext_border"
+                                android:elevation="10dp"
+                                android:hint="Discountable Amount"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="8dp"
+                                android:paddingBottom="4dp"
+                                android:paddingEnd="4dp"
+                                android:paddingTop="4dp"
+                                android:textColor="@color/add_properties_text"
+                                android:textColorHint="@color/add_properties_text"
+                                android:textSize="14sp"
+                                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                                android:layout_marginLeft="5dp"
+                                android:paddingLeft="8dp"
+                                android:paddingRight="4dp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_purpose_latitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/lay_purpose_discount"
                         android:layout_margin="2dp"
                         android:orientation="vertical">
 
@@ -310,8 +371,6 @@
 
                         </LinearLayout>
                     </LinearLayout>
-
-
                     <LinearLayout
                         android:id="@+id/lay_purpose_bedroom"
                         android:layout_width="match_parent"

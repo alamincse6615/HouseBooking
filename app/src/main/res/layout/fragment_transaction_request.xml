@@ -6,12 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment">
 
-    <TextView
-        android:text="@string/transaction_request"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transaction_list"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="wrap_content"/>
 </LinearLayout>

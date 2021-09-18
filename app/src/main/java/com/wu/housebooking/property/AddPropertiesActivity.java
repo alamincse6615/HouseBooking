@@ -27,8 +27,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -75,6 +78,8 @@ public class AddPropertiesActivity extends AppCompatActivity {
     EditText edtPurposeDesc;
     EditText edtPurposePhone;
     EditText edtPurposeAddress;
+    EditText edt_discountable_purpose;
+    EditText edt_discountable_amount;
     EditText edtPurposeLatitude;
     EditText edtPurposeLongitude;
     EditText edtPurposeBedroom;
@@ -107,6 +112,9 @@ public class AddPropertiesActivity extends AppCompatActivity {
     String propertyFur = "";
     boolean isFavourite = false;
     String propertyUid = "";
+    String discountablePurpose = "";
+    String discountableAmount = "";
+
 
 
     String featured_image = "";
@@ -131,7 +139,6 @@ public class AddPropertiesActivity extends AppCompatActivity {
         //Extract the data…
         if (bundle!=null)
             propertyUid = bundle.getString("propertyUid");
-        Toast.makeText(this, "p: "+propertyUid, Toast.LENGTH_SHORT).show();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Propertys");
         auth = FirebaseAuth.getInstance();
@@ -162,6 +169,8 @@ public class AddPropertiesActivity extends AppCompatActivity {
         edtPurposePhone = findViewById(R.id.edt_Purpose_phone);
 
         edtPurposeAddress = findViewById(R.id.edt_Purpose_address);
+        edt_discountable_purpose = findViewById(R.id.edt_discountable_purpose);
+        edt_discountable_amount = findViewById(R.id.edt_discountable_amount);
         edtPurposeLatitude = findViewById(R.id.edt_Purpose_latitude);
         edtPurposeLongitude = findViewById(R.id.edt_Purpose_longitude);
         edtPurposeBedroom = findViewById(R.id.edt_Purpose_bedroom);
@@ -186,7 +195,39 @@ public class AddPropertiesActivity extends AppCompatActivity {
         currentDateandTime = sdf.format(new Date());
 
 
-        String[] propertyTypeItems = new String[] {"Sale", "Rent",};
+        databaseReference.child(propertyUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                edtPurposeName.setText(""+snapshot.child("propertyName").getValue());
+                edtPurposeDesc.setText(""+snapshot.child("propertyDescription").getValue());
+                edtPurposePhone.setText(""+snapshot.child("propertyPhone").getValue());
+                edtPurposeAddress.setText(""+snapshot.child("propertyAddress").getValue());
+                edtPurposeLatitude.setText(""+snapshot.child("propertyMapLatitude").getValue());
+                edtPurposeLongitude.setText(""+snapshot.child("propertyMapLongitude").getValue());
+                edtPurposeBedroom.setText(""+snapshot.child("propertyBed").getValue());
+                edtPurposeBathroom.setText(""+snapshot.child("propertyBath").getValue());
+                edtPurposeArea.setText(""+snapshot.child("propertyArea").getValue());
+                edtPurposePrice.setText(""+snapshot.child("propertyPrice").getValue());
+                edtPurposeAmenity.setText(""+snapshot.child("propertyAmenities").getValue());
+                if (String.valueOf(snapshot.child("propertyAmenities").getValue()).length()>10)
+                    edt_discountable_purpose.setText(""+snapshot.child("discountablePurpose").getValue());
+                if (String.valueOf(snapshot.child("discountablePurpose").getValue()).length()>10)
+                    edt_discountable_amount.setText(""+snapshot.child("discountableAmount").getValue());
+                if (String.valueOf(snapshot.child("featured_image").getValue()).length()>10)
+                    Picasso.get().load(""+snapshot.child("featured_image").getValue()).placeholder(R.drawable.noimage).into(img_feature);
+                if (String.valueOf(snapshot.child("floor_plan_image").getValue()).length()>10)
+                    Picasso.get().load(""+snapshot.child("floor_plan_image").getValue()).placeholder(R.drawable.noimage).into(img_plan);
+                if (String.valueOf(snapshot.child("gallery_image").getValue()).length()>10)
+                    Picasso.get().load(""+snapshot.child("gallery_image").getValue()).placeholder(R.drawable.noimage).into(img_gallery);
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
+        String[] propertyTypeItems = new String[] {"Rent",};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, propertyTypeItems);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -202,6 +243,7 @@ public class AddPropertiesActivity extends AppCompatActivity {
 
             }
         });
+
 
 
 
@@ -273,6 +315,9 @@ public class AddPropertiesActivity extends AppCompatActivity {
                 propertyMapLongitude = edtPurposeLongitude.getText().toString().trim();
                 propertyThumbnailB = "";
                 propertyBed = edtPurposeBedroom.getText().toString().trim();
+                propertyBath = edtPurposeBathroom.getText().toString().trim();
+                discountablePurpose = edt_discountable_purpose.getText().toString().trim();
+                discountableAmount = edt_discountable_amount.getText().toString().trim();
                 propertyArea = edtPurposeArea.getText().toString().trim();
                 propertyAmenities = edtPurposeAmenity.getText().toString().trim();
                 propertyPrice = edtPurposePrice.getText().toString().trim();
@@ -292,6 +337,8 @@ public class AddPropertiesActivity extends AppCompatActivity {
                 propertyMap.put("propertyAddress",propertyAddress);
                 propertyMap.put("propertyMapLatitude",propertyMapLatitude);
                 propertyMap.put("propertyMapLongitude",propertyMapLongitude);
+                propertyMap.put("discountablePurpose",discountablePurpose);
+                propertyMap.put("discountableAmount",discountableAmount);
                 propertyMap.put("propertyThumbnailB",propertyThumbnailB);
                 propertyMap.put("propertyBed",propertyBed);
                 propertyMap.put("propertyBath",propertyBath);

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,19 +15,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.wu.housebooking.R;
 import com.wu.housebooking.model.BookingModel;
-import com.wu.housebooking.model.ItemProperty;
-import com.wu.housebooking.model.SignUpModel;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingRequestToPOAdapter.ItemRowHolder>{
+public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransactionAdapter.ItemRowHolder>{
+
     private Activity mContext;
     DatabaseReference bookingRef;
     private ArrayList<BookingModel> bookingModelArrayList = new ArrayList<>();
 
-    public BookingRequestToPOAdapter(Activity mContext, ArrayList<BookingModel> bookingModelArrayList) {
+
+    public AdminTransactionAdapter(Activity mContext, ArrayList<BookingModel> bookingModelArrayList) {
         this.mContext = mContext;
         this.bookingModelArrayList = bookingModelArrayList;
     }
@@ -37,7 +36,7 @@ public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingReque
     @NotNull
     @Override
     public ItemRowHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.property_request_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.amdin_transaction, parent, false);
         return new ItemRowHolder(v);
     }
 
@@ -46,11 +45,11 @@ public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingReque
         bookingRef = FirebaseDatabase.getInstance().getReference("Booking");
         final BookingModel signUpModel = bookingModelArrayList.get(position);
         holder.tv_name.setText(signUpModel.getUserName());
-        holder.tv_phone.setText(signUpModel.getUserPhone());
-        holder.tv_email.setText(signUpModel.getUserEmail());
+        holder.tv_amount.setText(signUpModel.getPaymentAmountByUser());
+        holder.tv_transaction.setText(signUpModel.getPaymentTransactionId());
         if (signUpModel.getUserAddress().equals("address") || signUpModel.getUserAddress()==null)
             //holder.tv_address.setText("");
-        holder.tv_address.setVisibility(View.GONE);
+            holder.tv_address.setVisibility(View.GONE);
         else
             holder.tv_address.setText(signUpModel.getUserAddress());
         //holder.tv_role.setVisibility(View.INVISIBLE);
@@ -79,24 +78,23 @@ public class BookingRequestToPOAdapter extends RecyclerView.Adapter<BookingReque
         });
     }
 
-
     @Override
     public int getItemCount() {
         return (null != bookingModelArrayList ? bookingModelArrayList.size() : 0);
     }
 
     public class ItemRowHolder extends RecyclerView.ViewHolder {
-        private TextView tv_name, tv_phone, tv_email,tv_address,tv_role,tv_delete;
+        private TextView tv_name, tv_amount, tv_transaction,tv_address,tv_role,tv_delete;
         private LinearLayout lyt_parent;
 
         private ItemRowHolder(View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_name);
-            tv_phone = itemView.findViewById(R.id.tv_phone);
-            tv_email = itemView.findViewById(R.id.tv_email);
+            tv_address = itemView.findViewById(R.id.tv_address);
+            tv_amount = itemView.findViewById(R.id.tv_amount);
+            tv_transaction = itemView.findViewById(R.id.tv_transaction);
             lyt_parent = itemView.findViewById(R.id.lyt_parent);
             tv_role = itemView.findViewById(R.id.tv_role);
-            tv_address = itemView.findViewById(R.id.tv_address);
             tv_delete = itemView.findViewById(R.id.tv_delete);
         }
     }

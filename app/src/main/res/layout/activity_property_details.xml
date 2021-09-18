@@ -515,7 +515,24 @@
                         android:src="@drawable/ic__detail_call"
                         android:layout_marginRight="20dp"
                         android:layout_toLeftOf="@+id/imageMap" />
-
+                    <TextView
+                        android:id="@+id/tv_discount"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="74dp"
+                        android:text="100%"
+                        android:fontFamily="@font/custom"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:layout_marginRight="-40dp"
+                        android:layout_toStartOf="@+id/imageMap"
+                        android:layout_toLeftOf="@+id/imageCall"
+                        android:background="@drawable/circle_green"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="10dp"
+                        android:padding="5dp" />
 
                 </RelativeLayout>
 
