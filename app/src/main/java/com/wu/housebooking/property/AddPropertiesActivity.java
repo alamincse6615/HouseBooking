@@ -355,6 +355,8 @@ public class AddPropertiesActivity extends AppCompatActivity {
                 propertyMap.put("floor_plan_image",floor_plan_image);
                 propertyMap.put("gallery_image",gallery_image);
                 propertyMap.put("isFav",false);
+                propertyMap.put("isApprovedByAdmin",false);
+                propertyMap.put("isDeleteByAdmin",false);
 
                 databaseReference.child(pId).setValue(propertyMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

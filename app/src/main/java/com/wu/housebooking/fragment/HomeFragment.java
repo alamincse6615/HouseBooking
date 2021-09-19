@@ -94,13 +94,16 @@ public class HomeFragment extends Fragment {
                         ItemProperty property = postSnapshot.getValue(ItemProperty.class);
                         if (property!= null){
                             itemArrayList.add(property);
+                            if (postSnapshot.child("isApprovedByAdmin") != null) {
+                                if (property.getPropertyQualityType().equals("Fretured") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
+                                    itemFreturedPropertyArrayList.add(property);
 
-                            if (property.getPropertyQualityType().equals("Fretured") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
-                                itemFreturedPropertyArrayList.add(property);
-                            if (property.getPropertyQualityType().equals("Home Premium") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
-                                itemHomePremiumPropertyArrayList.add(property);
-                            if (property.getPropertyQualityType().equals("Home Latest") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
-                                itemHomeLatestPropertyArrayList.add(property);
+                                if (property.getPropertyQualityType().equals("Home Premium") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
+                                    itemHomePremiumPropertyArrayList.add(property);
+                                if (property.getPropertyQualityType().equals("Home Latest") && (Boolean) postSnapshot.child("isApprovedByAdmin").getValue())
+                                    itemHomeLatestPropertyArrayList.add(property);
+
+                            }
                         }
                     }
                     if (itemFreturedPropertyArrayList.size()>0){

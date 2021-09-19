@@ -273,7 +273,7 @@
                                 android:background="@drawable/edittext_border"
                                 android:elevation="10dp"
                                 android:hint="Discountable Purpose"
-                                android:inputType="numberDecimal"
+                                android:inputType="text"
                                 android:paddingStart="8dp"
                                 android:paddingBottom="4dp"
                                 android:paddingEnd="4dp"

@@ -87,6 +87,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
     TextView  textVery;
     TextView  property_description;
     TextView  ContainerAmenities;
+    TextView  tv_discount;
     TextView  tv_continue;
     ImageView image_floor;
     FirebaseAuth firebaseAuth;
@@ -151,6 +152,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
             currentActiveUserId = firebaseAuth.getCurrentUser().getUid();
         }
 
+        tv_discount = findViewById(R.id.tv_discount);
         ivGallery = findViewById(R.id.ivGallery);
         textAddress = findViewById(R.id.textAddress);
         textPhone = findViewById(R.id.textPhone);
@@ -195,6 +197,11 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                     tv_continue.setBackgroundColor(getResources().getColor(R.color.white));
                     tv_continue.setTextColor(getResources().getColor(R.color.black));
                     tv_continue.setText("My Property");
+                }
+                if (snapshot.child("discountableAmount")!=null)
+                    tv_discount.setText(String.valueOf(snapshot.child("discountableAmount").getValue())+"%\noff");
+                else {
+                    tv_discount.setVisibility(View.INVISIBLE);
                 }
             }
 
