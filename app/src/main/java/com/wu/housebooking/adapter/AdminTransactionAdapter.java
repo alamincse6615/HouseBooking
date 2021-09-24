@@ -46,8 +46,9 @@ public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransacti
         final BookingModel signUpModel = bookingModelArrayList.get(position);
         holder.tv_name.setText(signUpModel.getUserName());
         holder.tv_amount.setText(signUpModel.getPaymentAmountByUser());
+        holder.tv_admin_amount.setText("10% \n৳ "+discountedPrice(Double.parseDouble(signUpModel.getPaymentAmountByUser()),10));
         holder.tv_transaction.setText(signUpModel.getPaymentTransactionId());
-        if (signUpModel.getUserAddress().equals("address") || signUpModel.getUserAddress()==null)
+        if (signUpModel.getUserAddress().equals("address") || signUpModel.getUserAddress().equals("null")|| signUpModel.getUserAddress()==null)
             //holder.tv_address.setText("");
             holder.tv_address.setVisibility(View.GONE);
         else
@@ -84,7 +85,7 @@ public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransacti
     }
 
     public class ItemRowHolder extends RecyclerView.ViewHolder {
-        private TextView tv_name, tv_amount, tv_transaction,tv_address,tv_role,tv_delete;
+        private TextView tv_name, tv_amount, tv_transaction,tv_address,tv_role,tv_delete,tv_admin_amount;
         private LinearLayout lyt_parent;
 
         private ItemRowHolder(View itemView) {
@@ -96,6 +97,11 @@ public class AdminTransactionAdapter extends RecyclerView.Adapter<AdminTransacti
             lyt_parent = itemView.findViewById(R.id.lyt_parent);
             tv_role = itemView.findViewById(R.id.tv_role);
             tv_delete = itemView.findViewById(R.id.tv_delete);
+            tv_admin_amount = itemView.findViewById(R.id.tv_admin_amount);
         }
+    }
+
+    public double discountedPrice(Double price,int percentage){
+        return  ((price * percentage) / 100);
     }
 }

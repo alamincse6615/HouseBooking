@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="3dp"
         app:cardElevation="3dp"
@@ -20,6 +21,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_admin_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/custom"
+                android:text="1000"
+                android:rotation="-45"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="@drawable/circle_round"
+                android:textColor="#08850D"
+                android:textSize="14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

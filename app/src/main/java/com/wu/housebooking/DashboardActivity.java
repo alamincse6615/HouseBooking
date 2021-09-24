@@ -285,6 +285,8 @@ public class DashboardActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which){
                                         if (firebaseAuth.getCurrentUser() != null){
                                             firebaseAuth.signOut();
+                                            Intent intent1 = new Intent(DashboardActivity.this,LoginActivity.class);
+                                            startActivity(intent1);
                                             finish();
                                         }
 

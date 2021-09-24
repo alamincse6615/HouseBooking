@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_bg"
+    android:backgroundTint="#A803A9F4"
     tools:context=".auth.LoginActivity">
 
 
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/sign_into_continue"
                 android:textStyle="bold"
-                android:textColor="@color/light_gray" />
+                android:textColor="@color/colorPrimary" />
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -18,6 +18,8 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_property">All Properties</string>
+    <string name="menu_transaction">Transaction List</string>
+    <string name="menu_users">Users List</string>
     <string name="menu_latest">Latest</string>
     <string name="menu_favourite">Favourite</string>
     <string name="menu_setting">Settings</string>

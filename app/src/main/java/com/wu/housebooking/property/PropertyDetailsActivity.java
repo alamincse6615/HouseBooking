@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -89,6 +90,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
     TextView  ContainerAmenities;
     TextView  tv_discount;
     TextView  tv_continue;
+    TextView  textDiscountPrice;
     ImageView image_floor;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference,bookingRef,mDatabase;
@@ -104,6 +106,13 @@ public class PropertyDetailsActivity extends AppCompatActivity {
     String userAddress = "";
     String currentActiveUserId = "";
     Boolean isMyProperty = false;
+    String imgUrl = "";
+    String propertyName = "";
+    String propertyLoc = "";
+    String discount = "";
+    String price = "";
+    String discountPrice = "";
+
 
 
 
@@ -152,6 +161,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
             currentActiveUserId = firebaseAuth.getCurrentUser().getUid();
         }
 
+        textDiscountPrice = findViewById(R.id.textDiscountPrice);
         tv_discount = findViewById(R.id.tv_discount);
         ivGallery = findViewById(R.id.ivGallery);
         textAddress = findViewById(R.id.textAddress);
@@ -173,9 +183,13 @@ public class PropertyDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (String.valueOf(snapshot.child("gallery_image").getValue()).length()>5)
                     Picasso.get().load(String.valueOf(snapshot.child("gallery_image").getValue())).into(ivGallery);
+                imgUrl = String.valueOf(snapshot.child("gallery_image").getValue());
                 text.setText(String.valueOf(snapshot.child("propertyName").getValue()));
-                textPrice.setText(String.valueOf(snapshot.child("propertyPrice").getValue()));
+                propertyName = String.valueOf(snapshot.child("propertyName").getValue());
+                textPrice.setText(getString(R.string.currency_symbol)+String.valueOf(snapshot.child("propertyPrice").getValue()));
+                price = String.valueOf(snapshot.child("propertyPrice").getValue());
                 textAddress.setText(String.valueOf(snapshot.child("propertyAddress").getValue()));
+                propertyLoc = String.valueOf(snapshot.child("propertyAddress").getValue());
                 textPhone.setText(String.valueOf(snapshot.child("propertyPhone").getValue()));
                 textBed.setText(String.valueOf(snapshot.child("propertyBed").getValue()));
                 textBath.setText(String.valueOf(snapshot.child("propertyBath").getValue()));
@@ -200,9 +214,26 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                 }
                 if (snapshot.child("discountableAmount")!=null)
                     tv_discount.setText(String.valueOf(snapshot.child("discountableAmount").getValue())+"%\noff");
+
                 else {
                     tv_discount.setVisibility(View.INVISIBLE);
                 }
+
+                if (snapshot.child("discountableAmount")!=null) {
+
+                    textDiscountPrice.setText(getString(R.string.currency_symbol) + discountedPrice(
+                            Integer.parseInt(String.valueOf(snapshot.child("propertyPrice").getValue())),
+                            Integer.parseInt(String.valueOf(snapshot.child("discountableAmount").getValue()))
+
+                    ));
+                    discount = String.valueOf(snapshot.child("discountableAmount").getValue());
+
+                    textPrice.setPaintFlags(textPrice.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                    textPrice.setBackground(getResources().getDrawable(R.drawable.imagepicker_image_placeholder));
+                }else {
+                    textDiscountPrice.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
@@ -210,6 +241,8 @@ public class PropertyDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 
@@ -270,6 +303,12 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                 else if (tv_continue.getText().toString().trim().equals("Pay Now")){
                     Bundle bundle = new Bundle();
                     bundle.putString("thisBookingId", String.valueOf(thisBookingId));
+                    bundle.putString("propertyId", String.valueOf(propertyUid));
+                    bundle.putString("imgUrl", String.valueOf(imgUrl));
+                    bundle.putString("propertyName", String.valueOf(propertyName));
+                    bundle.putString("propertyLoc", String.valueOf(propertyLoc));
+                    bundle.putString("discount", String.valueOf(discount));
+                    bundle.putString("price", String.valueOf(price));
                     Intent intent = new Intent(PropertyDetailsActivity.this, PaymentActivity.class);
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -494,4 +533,10 @@ public class PropertyDetailsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public double discountedPrice(int price,int percentage){
+
+         return price - ((price * percentage) / 100);
+    }
+
 }

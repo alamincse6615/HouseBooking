@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/txt"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text=" Payment Info"
         android:textSize="20dp"
         android:fontFamily="@font/custom"
@@ -21,7 +21,7 @@
 
     <ScrollView
         android:layout_below="@+id/txt"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -29,8 +29,198 @@
         android:layout_alignParentLeft="true">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="3dp"
+                android:layout_margin="5dp"
+                app:cardElevation="3dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="fitXY" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gradient_drawable" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginStart="6dp"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="6dp">
+                            <TextView
+                                android:id="@+id/tv_property_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="6dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_marginTop="5dp"
+                                android:singleLine="true"
+                                android:text="@string/no_item_found"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"
+                                    android:layout_marginStart="4dp"
+                                    android:layout_marginTop="3dp"
+                                    android:contentDescription="@string/app_name"
+                                    android:src="@drawable/ic_location"
+                                    android:layout_marginLeft="4dp" />
+
+                                <TextView
+                                    android:id="@+id/textAddress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_marginStart="3dp"
+                                    android:layout_marginTop="3dp"
+                                    android:minLines="2"
+                                    android:maxLines="2"
+                                    android:text="@string/no_item_found"
+                                    android:textColor="@color/orange"
+                                    android:textSize="13sp"
+                                    android:layout_marginRight="6dp"
+                                    android:layout_marginLeft="3dp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_marginStart="6dp"
+                        android:text="Date : 24-09-21----> 27-09-21"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/custom"
+                        android:textSize="14sp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp" />
+                    <TextView
+
+                        android:layout_marginStart="6dp"
+                        android:maxLines="1"
+                        android:text="-----------------------------------------------------------"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/custom"
+                        android:textSize="14sp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp" />
+                    <TextView
+                        android:id="@+id/tv_ragular_price"
+                        android:layout_marginStart="6dp"
+                        android:text=""
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/custom"
+                        android:textSize="14sp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp" />
+                    <TextView
+                        android:id="@+id/tv_ragular_cal"
+                        android:text=""
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="6dp"
+                        android:fontFamily="@font/custom"
+                        android:textSize="14sp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tv_discount"
+                        android:text="Discount 10%"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/custom"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="6dp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                    <LinearLayout
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+
+                            android:maxLines="1"
+                            android:text="---------------------------------------------------------------------"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/custom"
+                            android:textSize="11sp"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_persentange"
+                            android:text=" 1000/="
+                            android:textColor="@color/black"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/custom"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_view"
@@ -42,6 +232,7 @@
                 app:cardUseCompatPadding="false"
                 app:elevation="5dp">
                 <RelativeLayout
+                    android:layout_margin="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <LinearLayout
@@ -127,7 +318,7 @@
                             android:layout_marginTop="12dp"
                             android:orientation="horizontal">
 
-                            <EditText
+                            <TextView
                                 android:id="@+id/edt_amount"
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
@@ -135,6 +326,7 @@
                                 android:background="@drawable/edittext_border"
                                 android:elevation="10dp"
                                 android:hint="Amount"
+                                android:gravity="center_vertical"
                                 android:inputType="numberDecimal"
                                 android:paddingStart="8dp"
                                 android:paddingBottom="4dp"
@@ -168,6 +360,7 @@
                                 android:id="@+id/edt_transaction_number"
                                 android:layout_width="0dp"
                                 android:layout_height="40dp"
+                                android:layout_marginBottom="30dp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_border"
                                 android:elevation="10dp"

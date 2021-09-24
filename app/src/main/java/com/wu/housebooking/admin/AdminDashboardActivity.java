@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,6 +19,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.wu.housebooking.R;
+import com.wu.housebooking.admin.ui.notifications.TransactionActivity;
+import com.wu.housebooking.admin.ui.users.AllUsersActivity;
 import com.wu.housebooking.databinding.ActivityAdminDashboardBinding;
 import com.wu.housebooking.property.AllPropertyActivity;
 
@@ -34,6 +37,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
        // setContentView(R.layout.activity_admin_dashboard);
+
+        ActionBar actionBar = this.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         binding = ActivityAdminDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -62,6 +70,14 @@ public class AdminDashboardActivity extends AppCompatActivity {
                     case R.id.navigation_all_property:
                         Intent intent = new Intent(AdminDashboardActivity.this, AllPropertyActivity.class);
                         startActivity(intent);
+                        break;
+                    case R.id.navigation_dashboard:
+                        Intent intent1 = new Intent(AdminDashboardActivity.this, AllUsersActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.navigation_notifications:
+                        Intent intent2 = new Intent(AdminDashboardActivity.this, TransactionActivity.class);
+                        startActivity(intent2);
                         break;
 
                 }

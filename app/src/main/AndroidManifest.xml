@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wu.housebooking">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
 
     <application
         android:allowBackup="true"
@@ -14,18 +13,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".admin.ui.users.AllUsersActivity"></activity>
+        <activity android:name=".admin.ui.notifications.TransactionActivity" />
         <activity
             android:name=".admin.AdminDashboardActivity"
-            android:label="@string/title_activity_admin_dashboard"/>
+            android:label="@string/title_activity_admin_dashboard"
+             />
         <activity android:name=".property.FavoriteActivity" />
         <activity android:name=".property.LatestPropertyActivity" />
         <activity android:name=".property.AllPropertyActivity" />
         <activity android:name=".Util.ContuctUsActivity" />
         <activity android:name=".auth.ProfileEditActivity" />
         <activity android:name=".property.MyPropertyDetailsActivity" />
-        <activity android:name=".PaymentActivity" />
+        <activity android:name=".PaymentActivity"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity android:name=".property.MyPropertyActivity" />
         <activity android:name=".property.PropertyDetailsActivity" />
         <activity android:name=".property.AddPropertiesActivity" />
